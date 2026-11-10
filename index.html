@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Resonix Studio — AI Sound Generation & Intelligent Sound Library</title>
-<meta name="description" content="Resonix Studio is a professional desktop app for AI sound generation and intelligent sound library management. Generate unique sound effects from text, search 10,000+ sounds with AI, and build audio projects — all running 100% offline on your PC.">
+<title>Resonix Studio — Intelligent Audio Search & AI Sound Library</title>
+<meta name="description" content="Resonix Studio is a professional desktop app with intelligent AI-powered audio search. Chat with it like ChatGPT to find the perfect sound from your library instantly. Includes 10,000+ free sounds and AI sound generation.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0b0d12;--bg2:#12161f;--card:#161c28;--tx:#e8eaf2;--mut:#9aa3b5;--dim:#6b7484;--ln:#232a38;--ac:#8b7cff;--ac2:#5b6ee0;--wa:#25d366;--gold:#d4a017}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
 img{max-width:100%;height:auto}
 
-/* Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,13,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
 nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:#fff;text-decoration:none}
 nav .logo img{width:32px;height:32px;border-radius:8px}
@@ -21,7 +20,6 @@ nav .links a:hover{color:var(--tx)}
 nav .btn-nav{background:var(--ac);color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;transition:.2s}
 nav .btn-nav:hover{filter:brightness(1.15)}
 
-/* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:radial-gradient(ellipse at 50% 0%,rgba(139,124,255,.15),transparent 60%),var(--bg)}
 .hero-logo{width:96px;height:96px;border-radius:24px;margin-bottom:24px;box-shadow:0 8px 32px rgba(139,124,255,.3)}
 .hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;margin-bottom:16px;background:linear-gradient(135deg,#fff,#a29bfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
@@ -39,14 +37,26 @@ nav .btn-nav:hover{filter:brightness(1.15)}
 .stat b{display:block;font-size:28px;font-weight:800;color:var(--ac)}
 .stat span{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
 
-/* Section */
 .section{max-width:1100px;margin:0 auto;padding:80px 24px}
 .section-title{text-align:center;margin-bottom:48px}
 .section-title h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:12px}
 .section-title p{color:var(--mut);font-size:16px;max-width:600px;margin:0 auto}
 .section-title .badge{display:inline-block;background:rgba(139,124,255,.1);border:1px solid rgba(139,124,255,.3);color:var(--ac);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:16px}
 
-/* Features Grid */
+/* Chat demo */
+.chat-demo{background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:32px;max-width:700px;margin:0 auto}
+.chat-msg{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.chat-msg .avatar{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.chat-msg.user .avatar{background:rgba(255,255,255,.08)}
+.chat-msg.ai .avatar{background:var(--ac)}
+.chat-msg .bubble{background:rgba(255,255,255,.04);border:1px solid var(--ln);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--mut);max-width:80%}
+.chat-msg.user .bubble{background:rgba(139,124,255,.08);border-color:rgba(139,124,255,.2);color:var(--tx)}
+.chat-msg.ai .bubble b{color:var(--ac)}
+.chat-input{display:flex;gap:8px;margin-top:16px}
+.chat-input input{flex:1;background:rgba(0,0,0,.3);border:1px solid var(--ln);border-radius:10px;padding:12px 16px;color:var(--tx);font-size:14px;outline:none}
+.chat-input input:focus{border-color:var(--ac)}
+.chat-input button{background:var(--ac);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-weight:700;cursor:pointer}
+
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .feature{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:28px;transition:.2s}
 .feature:hover{border-color:rgba(139,124,255,.3);transform:translateY(-2px)}
@@ -54,14 +64,12 @@ nav .btn-nav:hover{filter:brightness(1.15)}
 .feature h3{font-size:17px;margin-bottom:8px;color:#fff}
 .feature p{color:var(--mut);font-size:14px;line-height:1.6}
 
-/* How it works */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:step}
 .step{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:28px;position:relative;counter-increment:step}
 .step::before{content:counter(step);position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:8px;background:var(--ac);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
 .step h3{font-size:16px;margin-bottom:8px;color:#fff;margin-top:8px}
 .step p{color:var(--mut);font-size:13.5px}
 
-/* Sound Pack */
 .soundpack{background:linear-gradient(135deg,rgba(139,124,255,.08),rgba(91,110,224,.05));border:1px solid rgba(139,124,255,.2);border-radius:20px;padding:48px;text-align:center}
 .soundpack h2{font-size:32px;margin-bottom:12px}
 .soundpack p{color:var(--mut);max-width:600px;margin:0 auto 24px;font-size:15px}
@@ -69,7 +77,6 @@ nav .btn-nav:hover{filter:brightness(1.15)}
 .spf{background:rgba(255,255,255,.04);border:1px solid var(--ln);border-radius:10px;padding:12px 20px;font-size:13px;color:var(--mut)}
 .spf b{color:var(--tx)}
 
-/* Pricing / Purchase */
 .purchase{background:var(--bg2);border:1px solid var(--ln);border-radius:20px;padding:48px;text-align:center;max-width:700px;margin:0 auto}
 .purchase h2{font-size:32px;margin-bottom:8px}
 .purchase .price{font-size:48px;font-weight:900;color:var(--ac);margin:16px 0}
@@ -79,23 +86,21 @@ nav .btn-nav:hover{filter:brightness(1.15)}
 .purchase .includes li{padding:6px 0;color:var(--mut);font-size:14px}
 .purchase .includes li::before{content:"✓ ";color:var(--wa);font-weight:700}
 
-/* FAQ */
 .faq{max-width:800px;margin:0 auto}
 .faq-item{border-bottom:1px solid var(--ln);padding:20px 0}
 .faq-item h3{font-size:16px;margin-bottom:8px;color:#fff;cursor:pointer}
 .faq-item p{color:var(--mut);font-size:14px;line-height:1.6}
 
-/* Footer */
 footer{border-top:1px solid var(--ln);padding:40px 24px;text-align:center;color:var(--dim);font-size:13px}
 footer .links{display:flex;gap:24px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
 footer .links a{color:var(--mut);text-decoration:none;font-size:13px}
 footer .links a:hover{color:var(--tx)}
 
-/* Responsive */
 @media(max-width:768px){
   nav .links{display:none}
   .hero-stats{gap:24px}
   .soundpack,.purchase{padding:32px 20px}
+  .chat-demo{padding:20px}
 }
 </style>
 </head>
@@ -105,8 +110,8 @@ footer .links a:hover{color:var(--tx)}
 <nav>
   <a href="#" class="logo"><img src="resonix.png" alt="Resonix Studio"> Resonix Studio</a>
   <div class="links">
+    <a href="#search">AI Search</a>
     <a href="#features">Features</a>
-    <a href="#how">How It Works</a>
     <a href="#soundpack">Sound Pack</a>
     <a href="#purchase">Buy</a>
     <a href="#faq">FAQ</a>
@@ -118,61 +123,94 @@ footer .links a:hover{color:var(--tx)}
 <section class="hero">
   <img src="resonix.png" alt="Resonix Studio" class="hero-logo">
   <h1>Resonix Studio</h1>
-  <p class="tagline">AI-powered sound generation and intelligent sound library. Generate unique sound effects from text, search 10,000+ sounds with AI, and build professional audio projects — all running 100% offline on your PC.</p>
+  <p class="tagline">Chat with your sound library like ChatGPT. Find the perfect sound in seconds from thousands of files — just describe what you need in plain language.</p>
   <div class="cta">
     <a href="https://github.com/naimhossain332332-a11y/resonixstudio-website/releases/download/v1.1.0/ResonixStudio-Setup.exe" class="btn btn-pri">⬇ Download Resonix Studio</a>
+    <a href="https://mega.nz/folder/DEMO_LINK_REPLACE_LATER" class="btn btn-sec">🎁 Download Free Sound Pack</a>
     <a href="https://wa.me/8801992689794?text=Hi!%20I%20want%20to%20buy%20Resonix%20Studio." class="btn btn-wa">💬 Buy on WhatsApp</a>
   </div>
   <div class="hero-stats">
-    <div class="stat"><b>10,000+</b><span>Sounds Included</span></div>
-    <div class="stat"><b>100%</b><span>Offline</span></div>
-    <div class="stat"><b>AI</b><span>Powered Search</span></div>
+    <div class="stat"><b>Chat</b><span>Like ChatGPT</span></div>
+    <div class="stat"><b>10,000+</b><span>Sounds Free</span></div>
+    <div class="stat"><b>AI</b><span>Semantic Search</span></div>
     <div class="stat"><b>∞</b><span>Never Expires</span></div>
   </div>
+</section>
+
+<!-- Chat Demo -->
+<section class="section" id="search">
+  <div class="section-title">
+    <span class="badge">AI-Powered Search</span>
+    <h2>Find Any Sound by Just Talking</h2>
+    <p>Describe what you need in plain language — Resonix Studio finds it instantly from your entire library</p>
+  </div>
+  <div class="chat-demo">
+    <div class="chat-msg user">
+      <div class="avatar">👤</div>
+      <div class="bubble">I need a deep, rumbling thunder sound with heavy rain in the background</div>
+    </div>
+    <div class="chat-msg ai">
+      <div class="avatar">R</div>
+      <div class="bubble"><b>Found 8 matching sounds:</b><br>1. thunder_heavy_rain_03.wav — 98% match<br>2. storm_rumble_close.wav — 94% match<br>3. thunder_distant_roll.wav — 91% match<br><br>Would you like me to find more variations or something with less rain?</div>
+    </div>
+    <div class="chat-msg user">
+      <div class="avatar">👤</div>
+      <div class="bubble">Something more cinematic, like a movie thunder</div>
+    </div>
+    <div class="chat-msg ai">
+      <div class="avatar">R</div>
+      <div class="bubble"><b>Found 5 cinematic thunder sounds:</b><br>1. thunder_cinematic_boom.wav — 97% match<br>2. movie_thunder_strike.wav — 93% match<br><br>Drag any of these directly into your timeline!</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Describe the sound you need..." readonly>
+      <button>Send</button>
+    </div>
+  </div>
+  <p style="text-align:center;color:var(--dim);font-size:13px;margin-top:16px">* Interactive demo — actual app uses AI to search your real sound library</p>
 </section>
 
 <!-- Features -->
 <section class="section" id="features">
   <div class="section-title">
     <span class="badge">Features</span>
-    <h2>Everything You Need for Audio Work</h2>
-    <p>Professional tools for sound designers, musicians, content creators, and audio enthusiasts</p>
+    <h2>Intelligent Audio Search, Powered by AI</h2>
+    <p>The smartest way to find sounds in your library</p>
   </div>
   <div class="features">
     <div class="feature">
+      <div class="feature-icon">💬</div>
+      <h3>Chat-Based Sound Search</h3>
+      <p>Talk to your sound library like ChatGPT. Describe what you need in natural language — Resonix Studio understands context, mood, and intent to find the perfect match.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🧠</div>
+      <h3>Semantic AI Search</h3>
+      <p>Not just keyword matching. AI analyses the actual audio content — timbre, rhythm, mood, texture — to find sounds that match your description even if the filename says nothing.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📚</div>
+      <h3>Search Any Library Size</h3>
+      <p>Import folders with thousands of sounds. Resonix Studio indexes everything and searches your entire collection in milliseconds. No matter how big your library grows.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎯</div>
+      <h3>Accurate Results</h3>
+      <p>Get ranked results with match percentages. The most relevant sounds appear first, so you spend less time searching and more time creating.</p>
+    </div>
+    <div class="feature">
       <div class="feature-icon">🎵</div>
-      <h3>AI Sound Generation</h3>
-      <p>Generate unique sound effects from text descriptions using MOSS-SoundEffect 2.0. Create whooshes, impacts, ambience, Foley, and more — all from a simple text prompt.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🔍</div>
-      <h3>Intelligent Sound Search</h3>
-      <p>Import any folder of sounds. AI analyses and indexes them for instant semantic search. Find sounds by meaning and context, not just filenames.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📦</div>
-      <h3>10,000 Free Sounds</h3>
-      <p>Every purchase includes a free pack of 10,000 high-quality background music tracks and sound effects — ready to use in your projects.</p>
+      <h3>AI Sound Generation (Extra)</h3>
+      <p>Can't find the exact sound? Generate one from text using MOSS-SoundEffect 2.0. Create whooshes, impacts, ambience, Foley, and more — on demand.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🔒</div>
       <h3>100% Offline & Private</h3>
-      <p>All AI processing runs locally on your PC. No cloud, no subscriptions, no data collection. Your sounds and projects stay on your machine.</p>
+      <p>All AI processing runs locally on your PC. No cloud, no subscriptions, no data collection. Your sounds and searches stay on your machine.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">✂️</div>
       <h3>Audio Trimming & Export</h3>
       <p>Trim, rename, and export sounds in multiple formats. Build playlists, mark favorites, and organize your library your way.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">♾️</div>
-      <h3>One-Time Purchase</h3>
-      <p>Buy once, use forever. No subscriptions, no recurring fees. Your license key never expires and works on any PC.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">⚡</div>
-      <h3>Vulkan GPU Acceleration</h3>
-      <p>Optional GPU acceleration for faster sound generation. Falls back to CPU automatically if no GPU is available.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">🎧</div>
@@ -186,8 +224,7 @@ footer .links a:hover{color:var(--tx)}
 <section class="section" id="how" style="background:var(--bg2)">
   <div class="section-title">
     <span class="badge">How It Works</span>
-    <h2>Get Started in 4 Simple Steps</h2>
-    <p>From download to creating — in minutes</p>
+    <h2>From Download to Finding Sounds — In Minutes</h2>
   </div>
   <div class="steps">
     <div class="step">
@@ -196,15 +233,15 @@ footer .links a:hover{color:var(--tx)}
     </div>
     <div class="step">
       <h3>Activate</h3>
-      <p>Enter your license key from the PDF we send you. Activation is instant and fully offline.</p>
+      <p>Enter your license key. Activation is instant and fully offline.</p>
     </div>
     <div class="step">
-      <h3>Download Models</h3>
-      <p>On first launch, the app downloads AI models (~7 GB, one-time). After that, everything works offline.</p>
+      <h3>Import Your Sounds</h3>
+      <p>Point Resonix Studio to your sound folders. AI indexes everything automatically.</p>
     </div>
     <div class="step">
-      <h3>Start Creating</h3>
-      <p>Generate sounds from text, import your sound folders, search with AI, and build your projects.</p>
+      <h3>Start Chatting</h3>
+      <p>Describe what you need — Resonix finds it instantly. Generate new sounds if you can't find the right one.</p>
     </div>
   </div>
 </section>
@@ -212,15 +249,15 @@ footer .links a:hover{color:var(--tx)}
 <!-- Sound Pack -->
 <section class="section" id="soundpack">
   <div class="soundpack">
-    <h2>🎁 Free 10,000 Sound Pack</h2>
-    <p>Every purchase of Resonix Studio includes a free pack of 10,000 high-quality background music tracks and sound effects — ready to use in your projects.</p>
+    <h2>🎁 Free 10,000 Sound Pack — Forever Free</h2>
+    <p>Every purchase includes a free pack of 10,000 high-quality background music tracks and sound effects. Free forever — no extra charges, no subscriptions.</p>
     <div class="soundpack-features">
       <div class="spf"><b>4,000+</b> Sound Effects</div>
       <div class="spf"><b>3,000+</b> Background Music</div>
       <div class="spf"><b>3,000+</b> Ambience & Foley</div>
       <div class="spf"><b>WAV + MP3</b> Formats</div>
     </div>
-    <a href="https://mega.nz/folder/DEMO_LINK_REPLACE_LATER" class="btn btn-sec">⬇ Download Sound Pack (Free with purchase)</a>
+    <a href="https://mega.nz/folder/DEMO_LINK_REPLACE_LATER" class="btn btn-sec">⬇ Download Sound Pack (Free Forever)</a>
     <p style="color:var(--dim);font-size:12px;margin-top:16px">Available to licensed users. Download link sent with your license PDF.</p>
   </div>
 </section>
@@ -234,9 +271,10 @@ footer .links a:hover{color:var(--tx)}
     <p>No subscriptions. No recurring fees. Buy once, use forever.</p>
     <ul class="includes">
       <li>Resonix Studio full version</li>
-      <li>AI sound generation (MOSS-SoundEffect 2.0)</li>
-      <li>Intelligent sound library with AI search</li>
-      <li>Free 10,000 sound pack</li>
+      <li>Chat-based AI sound search (like ChatGPT)</li>
+      <li>Semantic search across your entire library</li>
+      <li>AI sound generation (extra feature)</li>
+      <li>Free 10,000 sound pack (forever free)</li>
       <li>All future updates included</li>
       <li>Offline activation — no internet needed after setup</li>
       <li>Priority WhatsApp support</li>
@@ -258,35 +296,39 @@ footer .links a:hover{color:var(--tx)}
   <div class="faq">
     <div class="faq-item">
       <h3>What is Resonix Studio?</h3>
-      <p>Resonix Studio is a desktop application for Windows that lets you generate unique sound effects using AI and manage large sound libraries with intelligent AI-powered search. Everything runs locally on your PC.</p>
+      <p>Resonix Studio is a desktop application for Windows that lets you search your sound library using AI — just describe what you need in plain language, like chatting with ChatGPT. It also includes AI sound generation as an extra feature.</p>
     </div>
     <div class="faq-item">
-      <h3>How does the AI sound generation work?</h3>
-      <p>Resonix Studio uses MOSS-SoundEffect 2.0, an open-source AI model that generates sound effects from text descriptions. You type what you want (e.g., "thunder rumble with rain"), and the AI creates a unique sound effect.</p>
+      <h3>How does the AI search work?</h3>
+      <p>Resonix Studio uses AI to understand the meaning of your search query, not just keywords. It analyses the actual audio content (timbre, rhythm, mood, texture) and matches it to your description. You can ask for "a deep rumbling thunder with heavy rain" and it finds the best matches.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I search through thousands of sounds?</h3>
+      <p>Yes! Resonix Studio indexes your entire library and searches through thousands of sounds in milliseconds. The more sounds you have, the better the search results.</p>
     </div>
     <div class="faq-item">
       <h3>Does it require internet?</h3>
-      <p>Only for the initial download of AI models (~7 GB, one-time). After that, everything works 100% offline — sound generation, search, and library management.</p>
+      <p>Only for the initial download of AI models (~7 GB, one-time). After that, everything works 100% offline — searching, generation, and library management.</p>
     </div>
     <div class="faq-item">
       <h3>What are the system requirements?</h3>
-      <p>Windows 10/11 (64-bit), 8 GB RAM minimum (16 GB recommended), 10 GB free disk space. Optional: Vulkan-compatible GPU for faster generation.</p>
+      <p>Windows 10/11 (64-bit), 8 GB RAM minimum (16 GB recommended), 10 GB free disk space. Optional: Vulkan-compatible GPU for faster processing.</p>
     </div>
     <div class="faq-item">
       <h3>How does licensing work?</h3>
       <p>You receive a unique license key via WhatsApp after purchase. Enter it in the app to unlock. The key never expires, works offline, and can be transferred to another PC using Settings → Deactivate.</p>
     </div>
     <div class="faq-item">
+      <h3>Is the 10,000 sound pack really free forever?</h3>
+      <p>Yes! The 10,000 sound pack is included free with your purchase and is free forever. No extra charges, no subscriptions, no time limits.</p>
+    </div>
+    <div class="faq-item">
       <h3>Can I use the sounds commercially?</h3>
-      <p>Yes! All sounds you generate and the included 10,000 sound pack are licensed for commercial use in your projects.</p>
+      <p>Yes! All sounds you find and the included 10,000 sound pack are licensed for commercial use in your projects.</p>
     </div>
     <div class="faq-item">
       <h3>What payment methods do you accept?</h3>
       <p>bKash, Nagad, and bank transfer. Contact us on WhatsApp to arrange payment.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Is there a refund policy?</h3>
-      <p>Due to the digital nature of the product, refunds are not available. However, we're happy to help with any issues — just message us on WhatsApp.</p>
     </div>
   </div>
 </section>
@@ -294,8 +336,8 @@ footer .links a:hover{color:var(--tx)}
 <!-- Footer -->
 <footer>
   <div class="links">
+    <a href="#search">AI Search</a>
     <a href="#features">Features</a>
-    <a href="#how">How It Works</a>
     <a href="#soundpack">Sound Pack</a>
     <a href="#purchase">Buy</a>
     <a href="#faq">FAQ</a>
