@@ -3,60 +3,307 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Resonix Studio — AI Sound Generation & Library</title>
+<title>Resonix Studio — AI Sound Generation & Intelligent Sound Library</title>
+<meta name="description" content="Resonix Studio is a professional desktop app for AI sound generation and intelligent sound library management. Generate unique sound effects from text, search 10,000+ sounds with AI, and build audio projects — all running 100% offline on your PC.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0b0d12;color:#e8eaf2;line-height:1.6}
-.hero{padding:60px 20px;text-align:center;background:linear-gradient(135deg,#1a1f2e,#0b0d12)}
-.hero h1{font-size:42px;margin-bottom:10px;background:linear-gradient(135deg,#8b7cff,#5b6ee0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:#9aa3b5;font-size:18px;max-width:600px;margin:0 auto 30px}
-.btn{display:inline-block;padding:14px 28px;border-radius:10px;font-weight:700;text-decoration:none;margin:8px;font-size:15px;transition:.2s}
-.btn-pri{background:#8b7cff;color:#fff}.btn-pri:hover{filter:brightness(1.15)}
-.btn-wa{background:#25d366;color:#06220f}.btn-wa:hover{filter:brightness(1.1)}
-.btn-sec{background:rgba(255,255,255,.08);color:#e8eaf2;border:1px solid #232a38}
-.section{max-width:900px;margin:0 auto;padding:40px 20px}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px}
-.feature{background:rgba(22,28,40,.8);border:1px solid #232a38;border-radius:12px;padding:24px}
-.feature h3{color:#8b7cff;margin-bottom:8px;font-size:16px}
-.feature p{color:#9aa3b5;font-size:13.5px}
-.download-box{background:rgba(139,124,255,.08);border:1px solid rgba(139,124,255,.3);border-radius:14px;padding:30px;text-align:center;margin:30px 0}
-.download-box h2{margin-bottom:10px}
-.download-box p{color:#9aa3b5;margin-bottom:20px}
-footer{text-align:center;padding:30px;color:#6b7484;font-size:12px;border-top:1px solid #232a38;margin-top:40px}
+:root{--bg:#0b0d12;--bg2:#12161f;--card:#161c28;--tx:#e8eaf2;--mut:#9aa3b5;--dim:#6b7484;--ln:#232a38;--ac:#8b7cff;--ac2:#5b6ee0;--wa:#25d366;--gold:#d4a017}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,13,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:#fff;text-decoration:none}
+nav .logo img{width:32px;height:32px;border-radius:8px}
+nav .links{display:flex;gap:24px;align-items:center}
+nav .links a{color:var(--mut);text-decoration:none;font-size:14px;transition:.2s}
+nav .links a:hover{color:var(--tx)}
+nav .btn-nav{background:var(--ac);color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;transition:.2s}
+nav .btn-nav:hover{filter:brightness(1.15)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:radial-gradient(ellipse at 50% 0%,rgba(139,124,255,.15),transparent 60%),var(--bg)}
+.hero-logo{width:96px;height:96px;border-radius:24px;margin-bottom:24px;box-shadow:0 8px 32px rgba(139,124,255,.3)}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;margin-bottom:16px;background:linear-gradient(135deg,#fff,#a29bfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.hero .tagline{font-size:clamp(16px,2.5vw,22px);color:var(--mut);max-width:700px;margin:0 auto 32px}
+.hero .cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:.2s;cursor:pointer;border:none}
+.btn-pri{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;box-shadow:0 4px 16px rgba(139,124,255,.3)}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,124,255,.4)}
+.btn-wa{background:var(--wa);color:#06220f}
+.btn-wa:hover{filter:brightness(1.1)}
+.btn-sec{background:rgba(255,255,255,.06);color:var(--tx);border:1px solid var(--ln)}
+.btn-sec:hover{background:rgba(255,255,255,.1)}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.stat{text-align:center}
+.stat b{display:block;font-size:28px;font-weight:800;color:var(--ac)}
+.stat span{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+
+/* Section */
+.section{max-width:1100px;margin:0 auto;padding:80px 24px}
+.section-title{text-align:center;margin-bottom:48px}
+.section-title h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:12px}
+.section-title p{color:var(--mut);font-size:16px;max-width:600px;margin:0 auto}
+.section-title .badge{display:inline-block;background:rgba(139,124,255,.1);border:1px solid rgba(139,124,255,.3);color:var(--ac);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:16px}
+
+/* Features Grid */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.feature{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:28px;transition:.2s}
+.feature:hover{border-color:rgba(139,124,255,.3);transform:translateY(-2px)}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;background:rgba(139,124,255,.1)}
+.feature h3{font-size:17px;margin-bottom:8px;color:#fff}
+.feature p{color:var(--mut);font-size:14px;line-height:1.6}
+
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:step}
+.step{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:28px;position:relative;counter-increment:step}
+.step::before{content:counter(step);position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:8px;background:var(--ac);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:16px;margin-bottom:8px;color:#fff;margin-top:8px}
+.step p{color:var(--mut);font-size:13.5px}
+
+/* Sound Pack */
+.soundpack{background:linear-gradient(135deg,rgba(139,124,255,.08),rgba(91,110,224,.05));border:1px solid rgba(139,124,255,.2);border-radius:20px;padding:48px;text-align:center}
+.soundpack h2{font-size:32px;margin-bottom:12px}
+.soundpack p{color:var(--mut);max-width:600px;margin:0 auto 24px;font-size:15px}
+.soundpack-features{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin:24px 0}
+.spf{background:rgba(255,255,255,.04);border:1px solid var(--ln);border-radius:10px;padding:12px 20px;font-size:13px;color:var(--mut)}
+.spf b{color:var(--tx)}
+
+/* Pricing / Purchase */
+.purchase{background:var(--bg2);border:1px solid var(--ln);border-radius:20px;padding:48px;text-align:center;max-width:700px;margin:0 auto}
+.purchase h2{font-size:32px;margin-bottom:8px}
+.purchase .price{font-size:48px;font-weight:900;color:var(--ac);margin:16px 0}
+.purchase .price small{font-size:16px;color:var(--mut);font-weight:400}
+.purchase p{color:var(--mut);margin-bottom:24px}
+.purchase .includes{list-style:none;text-align:left;max-width:400px;margin:0 auto 24px}
+.purchase .includes li{padding:6px 0;color:var(--mut);font-size:14px}
+.purchase .includes li::before{content:"✓ ";color:var(--wa);font-weight:700}
+
+/* FAQ */
+.faq{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--ln);padding:20px 0}
+.faq-item h3{font-size:16px;margin-bottom:8px;color:#fff;cursor:pointer}
+.faq-item p{color:var(--mut);font-size:14px;line-height:1.6}
+
+/* Footer */
+footer{border-top:1px solid var(--ln);padding:40px 24px;text-align:center;color:var(--dim);font-size:13px}
+footer .links{display:flex;gap:24px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+footer .links a{color:var(--mut);text-decoration:none;font-size:13px}
+footer .links a:hover{color:var(--tx)}
+
+/* Responsive */
+@media(max-width:768px){
+  nav .links{display:none}
+  .hero-stats{gap:24px}
+  .soundpack,.purchase{padding:32px 20px}
+}
 </style>
 </head>
 <body>
-<div class="hero">
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="logo"><img src="resonix.png" alt="Resonix Studio"> Resonix Studio</a>
+  <div class="links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#soundpack">Sound Pack</a>
+    <a href="#purchase">Buy</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="https://wa.me/8801992689794?text=Hi!%20I%20want%20to%20buy%20Resonix%20Studio." class="btn-nav">Buy on WhatsApp</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <img src="resonix.png" alt="Resonix Studio" class="hero-logo">
   <h1>Resonix Studio</h1>
-  <p>AI-powered sound generation and intelligent sound library. Generate unique sound effects, search 10,000+ sounds with AI, and build your audio projects — all running locally on your PC.</p>
-  <a href="https://github.com/naimhossain332332-a11y/resonixstudio-website/releases/download/v1.1.0/ResonixStudio-Setup.exe" class="btn btn-pri">Download Resonix Studio</a>
-  <a href="https://wa.me/8801992689794?text=Hi!%20I%20want%20to%20buy%20Resonix%20Studio." class="btn btn-wa">Buy on WhatsApp</a>
-</div>
-<div class="section">
-  <h2 style="text-align:center;margin-bottom:10px">Features</h2>
-  <p style="text-align:center;color:#9aa3b5">Everything you need for professional audio work</p>
+  <p class="tagline">AI-powered sound generation and intelligent sound library. Generate unique sound effects from text, search 10,000+ sounds with AI, and build professional audio projects — all running 100% offline on your PC.</p>
+  <div class="cta">
+    <a href="https://github.com/naimhossain332332-a11y/resonixstudio-website/releases/download/v1.1.0/ResonixStudio-Setup.exe" class="btn btn-pri">⬇ Download Resonix Studio</a>
+    <a href="https://wa.me/8801992689794?text=Hi!%20I%20want%20to%20buy%20Resonix%20Studio." class="btn btn-wa">💬 Buy on WhatsApp</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><b>10,000+</b><span>Sounds Included</span></div>
+    <div class="stat"><b>100%</b><span>Offline</span></div>
+    <div class="stat"><b>AI</b><span>Powered Search</span></div>
+    <div class="stat"><b>∞</b><span>Never Expires</span></div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="section-title">
+    <span class="badge">Features</span>
+    <h2>Everything You Need for Audio Work</h2>
+    <p>Professional tools for sound designers, musicians, content creators, and audio enthusiasts</p>
+  </div>
   <div class="features">
-    <div class="feature"><h3>AI Sound Generation</h3><p>Generate unique sound effects from text descriptions using MOSS-SoundEffect 2.0. Runs fully offline on your PC.</p></div>
-    <div class="feature"><h3>Smart Sound Library</h3><p>Import any folder of sounds. AI analyses and indexes them for instant semantic search. Find sounds by meaning, not just filenames.</p></div>
-    <div class="feature"><h3>10,000 Free Sounds</h3><p>Every purchase includes a free pack of 10,000 high-quality background music tracks and sound effects.</p></div>
-    <div class="feature"><h3>100% Offline</h3><p>All AI processing runs locally. No cloud, no subscriptions, no data collection. Your sounds stay on your PC.</p></div>
-    <div class="feature"><h3>Audio Trimming & Export</h3><p>Trim, rename, and export sounds in multiple formats. Build playlists and organize your library your way.</p></div>
-    <div class="feature"><h3>One-Time Purchase</h3><p>Buy once, use forever. No subscriptions, no recurring fees. License key never expires.</p></div>
+    <div class="feature">
+      <div class="feature-icon">🎵</div>
+      <h3>AI Sound Generation</h3>
+      <p>Generate unique sound effects from text descriptions using MOSS-SoundEffect 2.0. Create whooshes, impacts, ambience, Foley, and more — all from a simple text prompt.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔍</div>
+      <h3>Intelligent Sound Search</h3>
+      <p>Import any folder of sounds. AI analyses and indexes them for instant semantic search. Find sounds by meaning and context, not just filenames.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📦</div>
+      <h3>10,000 Free Sounds</h3>
+      <p>Every purchase includes a free pack of 10,000 high-quality background music tracks and sound effects — ready to use in your projects.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <h3>100% Offline & Private</h3>
+      <p>All AI processing runs locally on your PC. No cloud, no subscriptions, no data collection. Your sounds and projects stay on your machine.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✂️</div>
+      <h3>Audio Trimming & Export</h3>
+      <p>Trim, rename, and export sounds in multiple formats. Build playlists, mark favorites, and organize your library your way.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">♾️</div>
+      <h3>One-Time Purchase</h3>
+      <p>Buy once, use forever. No subscriptions, no recurring fees. Your license key never expires and works on any PC.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>Vulkan GPU Acceleration</h3>
+      <p>Optional GPU acceleration for faster sound generation. Falls back to CPU automatically if no GPU is available.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎧</div>
+      <h3>Multi-Format Support</h3>
+      <p>Supports WAV, MP3, OGG, FLAC, M4A, and AIFF files. Import any audio folder and Resonix Studio handles the rest.</p>
+    </div>
   </div>
-  <div class="download-box">
-    <h2>Download Sound Pack (Free with purchase)</h2>
-    <p>10,000 high-quality background music tracks and sound effects. Available to licensed users.</p>
-    <a href="https://mega.nz/folder/REPLACE_WITH_YOUR_MEGA_LINK" class="btn btn-sec">Download from Mega.nz</a>
+</section>
+
+<!-- How it works -->
+<section class="section" id="how" style="background:var(--bg2)">
+  <div class="section-title">
+    <span class="badge">How It Works</span>
+    <h2>Get Started in 4 Simple Steps</h2>
+    <p>From download to creating — in minutes</p>
   </div>
-  <div class="download-box">
-    <h2>Need Help?</h2>
-    <p>Questions about installation, activation, or the sound pack? Message us on WhatsApp.</p>
-    <a href="https://wa.me/8801992689794?text=Hi!%20I%20have%20a%20question%20about%20Resonix%20Studio." class="btn btn-wa">WhatsApp Support: +880 1992 689 794</a>
+  <div class="steps">
+    <div class="step">
+      <h3>Download & Install</h3>
+      <p>Download the installer and run it. Resonix Studio installs like any Windows app.</p>
+    </div>
+    <div class="step">
+      <h3>Activate</h3>
+      <p>Enter your license key from the PDF we send you. Activation is instant and fully offline.</p>
+    </div>
+    <div class="step">
+      <h3>Download Models</h3>
+      <p>On first launch, the app downloads AI models (~7 GB, one-time). After that, everything works offline.</p>
+    </div>
+    <div class="step">
+      <h3>Start Creating</h3>
+      <p>Generate sounds from text, import your sound folders, search with AI, and build your projects.</p>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- Sound Pack -->
+<section class="section" id="soundpack">
+  <div class="soundpack">
+    <h2>🎁 Free 10,000 Sound Pack</h2>
+    <p>Every purchase of Resonix Studio includes a free pack of 10,000 high-quality background music tracks and sound effects — ready to use in your projects.</p>
+    <div class="soundpack-features">
+      <div class="spf"><b>4,000+</b> Sound Effects</div>
+      <div class="spf"><b>3,000+</b> Background Music</div>
+      <div class="spf"><b>3,000+</b> Ambience & Foley</div>
+      <div class="spf"><b>WAV + MP3</b> Formats</div>
+    </div>
+    <a href="https://mega.nz/folder/DEMO_LINK_REPLACE_LATER" class="btn btn-sec">⬇ Download Sound Pack (Free with purchase)</a>
+    <p style="color:var(--dim);font-size:12px;margin-top:16px">Available to licensed users. Download link sent with your license PDF.</p>
+  </div>
+</section>
+
+<!-- Purchase -->
+<section class="section" id="purchase">
+  <div class="purchase">
+    <span class="badge" style="background:rgba(212,160,23,.1);border-color:rgba(212,160,23,.3);color:var(--gold)">One-Time Purchase</span>
+    <h2>Get Resonix Studio</h2>
+    <div class="price">Contact for Price <small>via WhatsApp</small></div>
+    <p>No subscriptions. No recurring fees. Buy once, use forever.</p>
+    <ul class="includes">
+      <li>Resonix Studio full version</li>
+      <li>AI sound generation (MOSS-SoundEffect 2.0)</li>
+      <li>Intelligent sound library with AI search</li>
+      <li>Free 10,000 sound pack</li>
+      <li>All future updates included</li>
+      <li>Offline activation — no internet needed after setup</li>
+      <li>Priority WhatsApp support</li>
+    </ul>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://github.com/naimhossain332332-a11y/resonixstudio-website/releases/download/v1.1.0/ResonixStudio-Setup.exe" class="btn btn-pri">⬇ Download Installer</a>
+      <a href="https://wa.me/8801992689794?text=Hi!%20I%20want%20to%20buy%20Resonix%20Studio." class="btn btn-wa">💬 Buy on WhatsApp</a>
+    </div>
+    <p style="color:var(--dim);font-size:12px;margin-top:16px">Payment via bKash, Nagad, or bank transfer. License key delivered via WhatsApp.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-title">
+    <span class="badge">FAQ</span>
+    <h2>Frequently Asked Questions</h2>
+  </div>
+  <div class="faq">
+    <div class="faq-item">
+      <h3>What is Resonix Studio?</h3>
+      <p>Resonix Studio is a desktop application for Windows that lets you generate unique sound effects using AI and manage large sound libraries with intelligent AI-powered search. Everything runs locally on your PC.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How does the AI sound generation work?</h3>
+      <p>Resonix Studio uses MOSS-SoundEffect 2.0, an open-source AI model that generates sound effects from text descriptions. You type what you want (e.g., "thunder rumble with rain"), and the AI creates a unique sound effect.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does it require internet?</h3>
+      <p>Only for the initial download of AI models (~7 GB, one-time). After that, everything works 100% offline — sound generation, search, and library management.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What are the system requirements?</h3>
+      <p>Windows 10/11 (64-bit), 8 GB RAM minimum (16 GB recommended), 10 GB free disk space. Optional: Vulkan-compatible GPU for faster generation.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How does licensing work?</h3>
+      <p>You receive a unique license key via WhatsApp after purchase. Enter it in the app to unlock. The key never expires, works offline, and can be transferred to another PC using Settings → Deactivate.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use the sounds commercially?</h3>
+      <p>Yes! All sounds you generate and the included 10,000 sound pack are licensed for commercial use in your projects.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What payment methods do you accept?</h3>
+      <p>bKash, Nagad, and bank transfer. Contact us on WhatsApp to arrange payment.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there a refund policy?</h3>
+      <p>Due to the digital nature of the product, refunds are not available. However, we're happy to help with any issues — just message us on WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer>
-  &copy; 2026 Resonix Studio. All rights reserved.<br>
-  Powered by MOSS-SoundEffect 2.0 (Apache 2.0) | Resonix Studio is licensed, not sold.
+  <div class="links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#soundpack">Sound Pack</a>
+    <a href="#purchase">Buy</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://wa.me/8801992689794?text=Hi!%20I%20have%20a%20question%20about%20Resonix%20Studio." target="_blank">WhatsApp Support</a>
+  </div>
+  <p>&copy; 2026 Resonix Studio. All rights reserved.</p>
+  <p style="margin-top:8px;font-size:11px">Powered by MOSS-SoundEffect 2.0 (Apache 2.0 License) | Resonix Studio is licensed, not sold.</p>
 </footer>
+
 </body>
 </html>
